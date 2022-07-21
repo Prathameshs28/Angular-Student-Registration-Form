@@ -1,0 +1,284 @@
+<div class="container">
+  <form [formGroup]="registrationForm">
+    <h1>Student Registration</h1>
+
+    <!-- {{registrationForm.value | json}} -->
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="name" class="form-lable">First Name: </label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter first name"
+            required
+            id="name"
+            formControlName="Fname"
+          />
+
+          <div *ngIf="firstName!.invalid && firstName!.touched">
+            <small class="text-danger" *ngIf="firstName!.errors?.['required']"
+              >First name is required</small
+            >
+            <small class="text-danger" *ngIf="firstName!.errors?.['pattern']"
+              >only alphabets are allowed</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-lable">Last Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter last name"
+            required
+            formControlName="Lname"
+          />
+
+          <div *ngIf="lastName!.invalid && lastName!.touched">
+            <small class="text-danger" *ngIf="lastName!.errors?.['required']"
+              >Last name is required</small
+            >
+            <small class="text-danger" *ngIf="lastName!.errors?.['pattern']"
+              >only alphabets are allowed</small
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-lable">Class:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter your class"
+            required
+            formControlName="std"
+          />
+
+          <div *ngIf="studentClass!.invalid && studentClass!.touched">
+            <small
+              class="text-danger"
+              *ngIf="studentClass!.errors?.['required']"
+              >Class is required</small
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <label class="gender-title">Gender:</label>
+        <div class="gender">
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              value="male"
+              required
+              formControlName="gender"
+              (change)="changeGender($event)"
+            />
+            <span class="form-check-span"> Male </span>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              value="female"
+              id="flexRadioDefault2"
+              required
+              formControlName="gender"
+              (change)="changeGender($event)"
+            />
+            <span class="form-check-span"> Female </span>
+          </div>
+
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="gender"
+              value="other"
+              required
+              formControlName="gender"
+              (change)="changeGender($event)"
+            />
+            <span class="form-check-span"> Other </span>
+          </div>
+        </div>
+
+        <div *ngIf="stdGender!.invalid && stdGender!.touched">
+          <small class="text-danger" *ngIf="stdGender!.errors?.['required']"
+            >Gender is required</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-sm-6">
+        <label class="form-lable">Address:</label>
+
+        <textarea
+          class="form-control mt-2"
+          id="description"
+          rows="5"
+          placeholder="Enter your address"
+          name="address"
+          required
+          formControlName="address"
+        ></textarea>
+
+        <div *ngIf="stdAddress!.invalid && stdAddress!.touched">
+          <small class="text-danger" *ngIf="stdAddress!.errors?.['required']"
+            >Address is required</small
+          >
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="col-8 col-sm-12">
+          <label class="form-lable">Email:</label>
+          <input
+            type="email"
+            class="form-control"
+            placeholder="Enter your email"
+            name="email"
+            required
+            formControlName="email"
+          />
+
+          <div *ngIf="stdEmail!.invalid && stdEmail!.touched">
+            <small class="text-danger" *ngIf="stdEmail!.errors?.['required']"
+              >Email is required</small
+            >
+            <small class="text-danger" *ngIf="stdEmail!.errors?.['pattern']"
+              >Email must be a valid email address</small
+            >
+          </div>
+        </div>
+
+        <div class="col-4 col-sm-12">
+          <label class="form-lable">Mobile Number:</label>
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Enter mobile number"
+            name="mobile"
+            formControlName="mobile"
+            required
+          />
+        </div>
+        <div *ngIf="stdMobNo!.invalid && stdMobNo!.touched">
+          <small class="text-danger" *ngIf="stdMobNo!.errors?.['required']"
+            >Mobile number is required</small
+          >
+          <small class="text-danger" *ngIf="stdMobNo!.errors?.['pattern']"
+            >Mobile number must be digit and length must be 10 digits</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-lable">Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            name="password"
+            placeholder="Enter password"
+            formControlName="pass"
+          />
+        </div>
+
+        <div *ngIf="password!.invalid && password!.touched">
+          <small class="text-danger" *ngIf="password!.errors?.['required']"
+            >Password is required
+          </small>
+          <small class="text-danger" *ngIf="password!.errors?.['pattern']"
+            >Password should be aplhanumeric(numbers, lower and upper characters
+            and special symbol) and minimum 8 characters</small
+          >
+        </div>
+      </div>
+
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-lable">Confirm Password:</label>
+          <input
+            type="password"
+            class="form-control"
+            name="Cpassword"
+            placeholder="Confirm password"
+            formControlName="cpass"
+          />
+        </div>
+
+        <div *ngIf="confirmPass!.invalid && confirmPass!.touched">
+          <small class="text-danger" *ngIf="confirmPass!.errors?.['required']"
+            >confirm password is required
+          </small>
+          <small
+            class="text-danger"
+            *ngIf="confirmPass!.errors?.['confirmPasswordValidator']"
+            >Passsword and Confirm Password didn't match</small
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label class="form-lable" style="margin-right: 10px">Hobbies:</label>
+
+      <div
+        formArrayName="hobbyArray"
+        *ngFor="let a of hobbies.controls; let i = index"
+      >
+        <div [formGroupName]="i" class="hobby">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="hobby"
+            name="hobby"
+            placeholder="Enter your Hobby"
+          />
+          <i
+            title="Delete"
+            class="fa fa-trash-o"
+            style="font-size: 30px; color: red"
+            (click)="deleteHobby(i)"
+          ></i>
+        </div>
+      </div>
+
+      <button
+        type="button"
+        class="btn btn-success hobbyBtn"
+        (click)="createItem()"
+      >
+        + Add more
+      </button>
+    </div>
+
+    <div class="regBtn">
+      <button
+        class="btn btn-primary"
+        [disabled]="!registrationForm.valid"
+        type="button"
+        (click)="Register()"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
